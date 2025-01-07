@@ -1,0 +1,21 @@
+<div class="task-filter">
+    <label for="status-filter">Filter by Status:</label>
+    <select [(ngModel)]="filterStatus" id="status-filter">
+      <option value="">All</option>
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+  
+  <div class="task-list">
+    <div *ngFor="let task of filteredTasks()" class="task-card">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+      <p>Priority: {{ task.priority }}</p>
+      <p>Status: {{ task.status }}</p>
+      <button (click)="editTask(task.id)">Edit</button>
+      <button (click)="deleteTask(task.id)">Delete</button>
+    </div>
+  </div>
+  
