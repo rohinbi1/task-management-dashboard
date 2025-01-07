@@ -1,47 +1,12 @@
-// // SCSS Mixins
-// @mixin button($bg-color, $color) {
-//   background-color: $bg-color;
-//   color: $color;
-//   padding: 10px 20px;
-//   border: none;
-//   cursor: pointer;
-//   border-radius: 4px;
-// }
-
-// @mixin input-field {
-//   padding: 8px;
-//   margin: 5px;
-//   border: 1px solid #ccc;
-//   border-radius: 4px;
-// }
-
-// // Reusable Styles
-// .add-task-btn {
-//   @include button(#28a745, white);
-// }
-
-// button {
-//   @include button(#007bff, white);
-// }
-
-// table {
-//   width: 100%;
-//   border-collapse: collapse;
-// }
-
-// th, td {
-//   padding: 8px;
-//   text-align: left;
-//   border-bottom: 1px solid #ddd;
-// }
-// SCSS Variables
 $primary-color: #007bff;
 $secondary-color: #28a745;
 $bg-color: #f8f9fa;
 $input-border-color: #ccc;
 $button-hover-bg: darken($primary-color, 10%);
+$dropdown-bg: #f8f9fa; 
+$dropdown-border-color: $input-border-color;
+$dropdown-hover-bg: lighten($dropdown-bg, 10%); 
 
-// SCSS Mixins
 @mixin button($bg-color, $color) {
   background-color: $bg-color;
   color: $color;
@@ -64,7 +29,6 @@ $button-hover-bg: darken($primary-color, 10%);
   width: 100%;
 }
 
-// Reusable Styles
 .add-task-btn {
   @include button($secondary-color, white);
 }
@@ -97,7 +61,6 @@ td {
   background-color: white;
 }
 
-// Task Form Styling (Add/Edit Task)
 .task-form {
   background-color: $bg-color;
   border-radius: 8px;
@@ -149,7 +112,6 @@ button[type="submit"] {
   background-color: darken($secondary-color, 10%);
 }
 
-// Dialog Styling for Delete Confirmation
 .app-confirm-dialog {
   background-color: white;
   padding: 20px;
@@ -168,4 +130,44 @@ button[type="submit"] {
 
 .app-confirm-dialog button:hover {
   background-color: darken($primary-color, 10%);
+}
+
+.task-filter {
+  display: flex;
+  justify-content: flex-start; 
+  margin-bottom: 20px;
+  
+  select {
+    @include input-field;
+    background-color: $dropdown-bg;
+    border: 1px solid $dropdown-border-color;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  
+    &:focus {
+      border-color: $primary-color;
+      background-color: $dropdown-hover-bg;
+    }
+  
+    & option {
+      padding: 10px;
+    }
+  
+    &:hover {
+      background-color: $dropdown-hover-bg;
+    }
+  }
+}
+
+.task-actions {
+  display: flex;
+  justify-content: flex-end; 
+  margin-bottom: 20px;
+
+  .add-task-btn {
+    margin-left: 10px;
+    width: auto;
+  }
 }

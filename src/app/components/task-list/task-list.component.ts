@@ -12,7 +12,18 @@ export class TaskListComponent {
   tasks: Task[] = this.taskService.getTasks();
   showDialog: boolean = false;
   taskIdToDelete: number | null = null;
-  constructor(private taskService: TaskService, private router: Router) {}
+  filterStatus: string = '';
+  
+  uniqueStatuses: string[] = [];
+
+  constructor(private taskService: TaskService, private router: Router) {
+    this.loadUniqueStatuses();
+  }
+
+  loadUniqueStatuses() {
+    const statuses = this.tasks.map(task => task.status);
+    this.uniqueStatuses = Array.from(new Set(statuses));
+  }
 
   onEdit(task: Task) {
     this.router.navigate(['/edit-task', task.id]);
@@ -23,6 +34,7 @@ export class TaskListComponent {
       this.taskService.deleteTask(id);
     }
   }
+
   openDeleteDialog(taskId: number): void {
     this.showDialog = true;
     this.taskIdToDelete = taskId;
@@ -36,11 +48,19 @@ export class TaskListComponent {
   onDeleteConfirmed(confirmed: boolean): void {
     if (confirmed && this.taskIdToDelete !== null) {
       this.taskService.deleteTask(this.taskIdToDelete);
-      this.tasks = this.taskService.getTasks(); 
+      this.tasks = this.taskService.getTasks();
+      this.loadUniqueStatuses(); 
     }
     this.closeDialog();
   }
+
   onAdd() {
     this.router.navigate(['/add-task']);
+  }
+
+  filteredTasks(): Task[] {
+    return this.filterStatus
+      ? this.tasks.filter((task) => task.status === this.filterStatus)
+      : this.tasks;
   }
 }
