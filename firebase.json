@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist/task-management-dashboard", 
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
