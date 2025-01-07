@@ -1,6 +1,11 @@
 {
   "hosting": {
-    "public": "dist/task-management-dashboard", 
+    "public": "dist/task-management-dashboard",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
