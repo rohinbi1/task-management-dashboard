@@ -1,55 +1,171 @@
-// /* You can add global styles to this file, and also import other style files */
-// $primary-color: #4caf50;
-// $secondary-color: #ff9800;
-// $danger-color: #f44336;
-// $text-color: #333;
-// $spacing: 16px;
+// // SCSS Mixins
+// @mixin button($bg-color, $color) {
+//   background-color: $bg-color;
+//   color: $color;
+//   padding: 10px 20px;
+//   border: none;
+//   cursor: pointer;
+//   border-radius: 4px;
+// }
 
-// @mixin button-style($bg-color) {
-//     background-color: $bg-color;
-//     color: #fff;
-//     padding: $spacing / 2 $spacing;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     &:hover {
-//       opacity: 0.9;
-//     }
-//   }
+// @mixin input-field {
+//   padding: 8px;
+//   margin: 5px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// }
 
-//   button {
-//     @include button-style($primary-color);
-//   }
-  
-//   .modal {
-//     background: #fff;
-//     padding: $spacing;
-//     border-radius: 8px;
-//   }
-body {
-    font-family: Arial, sans-serif;
+// // Reusable Styles
+// .add-task-btn {
+//   @include button(#28a745, white);
+// }
+
+// button {
+//   @include button(#007bff, white);
+// }
+
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// th, td {
+//   padding: 8px;
+//   text-align: left;
+//   border-bottom: 1px solid #ddd;
+// }
+// SCSS Variables
+$primary-color: #007bff;
+$secondary-color: #28a745;
+$bg-color: #f8f9fa;
+$input-border-color: #ccc;
+$button-hover-bg: darken($primary-color, 10%);
+
+// SCSS Mixins
+@mixin button($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+  padding: 10px 20px;
+  margin: 2px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: $button-hover-bg;
   }
-  
-  .task-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+}
+
+@mixin input-field {
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  width: 100%;
+}
+
+// Reusable Styles
+.add-task-btn {
+  @include button($secondary-color, white);
+}
+
+button {
+  @include button($primary-color, white);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: $bg-color;
+  border-radius: 8px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+td {
+  background-color: white;
+}
+
+// Task Form Styling (Add/Edit Task)
+.task-form {
+  background-color: $bg-color;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.task-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+input, select {
+  @include input-field;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: $secondary-color;
+  color: white;
+  &:hover {
+    background-color: darken($secondary-color, 10%);
   }
-  
-  .task-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &:disabled {
+    background-color: #28a745;
+    cursor: not-allowed;
   }
-  
-  button {
-    padding: 8px 16px;
-    margin-top: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+}
+
+.task-list {
+  margin: 20px;
+}
+
+.add-task-btn {
+  margin-bottom: 20px;
+  width: 100%;
+  @include button($secondary-color, white);
+}
+
+.add-task-btn:hover {
+  background-color: darken($secondary-color, 10%);
+}
+
+// Dialog Styling for Delete Confirmation
+.app-confirm-dialog {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.app-confirm-dialog button {
+  @include button($primary-color, white);
+  margin: 10px;
+  width: 100px;
+}
+
+.app-confirm-dialog button:hover {
+  background-color: darken($primary-color, 10%);
+}

@@ -5,8 +5,8 @@ import { AddEditTaskComponent } from './components/add-edit-task/add-edit-task.c
 
 const routes: Routes = [
   { path: '', component: TaskListComponent },
-  { path: 'add-edit-task/:id', component: AddEditTaskComponent },
-
+  { path: 'add-task', component: AddEditTaskComponent },
+  { path: 'edit-task/:id', component: AddEditTaskComponent },
 ];
 
 @NgModule({

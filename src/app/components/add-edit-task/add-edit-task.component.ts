@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TaskService } from 'src/app/services/task.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-add-edit-task',
@@ -13,13 +12,13 @@ import { Task } from 'src/app/models/task.model';
 export class AddEditTaskComponent implements OnInit {
   taskForm: FormGroup;
   taskId: number | null = null;
-  isEdit: boolean = false;
+  task: Task | null = null;
 
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
@@ -31,26 +30,32 @@ export class AddEditTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.taskId = +params.get('id')!;
-      if (this.taskId) {
-        const task = this.taskService.getTasks().find((task) => task.id === this.taskId);
-        if (task) {
-          this.isEdit = true;
-          this.taskForm.patchValue(task);
+      const id = params.get('id');
+      if (id) {
+        this.taskId = +id;
+        this.task =
+          this.taskService.getTasks().find((task) => task.id === this.taskId) ||
+          null;
+        if (this.task) {
+          this.taskForm.patchValue(this.task);
         }
       }
     });
   }
 
-  onSubmit(): void {
-    if (this.taskForm.valid) {
-      const task: Task = this.taskForm.value;
-      if (this.isEdit) {
-        this.taskService.editTask(this.taskId!, task);
-      } else {
-        this.taskService.addTask(task);
-      }
-      this.router.navigate(['/']);
+  onSubmit() {
+    if (this.taskForm.invalid) {
+      return;
     }
+
+    const taskData = this.taskForm.value;
+
+    if (this.taskId) {
+      this.taskService.editTask(this.taskId, taskData);
+    } else {
+      this.taskService.addTask(taskData);
+    }
+
+    this.router.navigate(['/']);
   }
 }
