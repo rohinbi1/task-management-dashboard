@@ -1,0 +1,31 @@
+[debug] [2025-01-07T16:36:50.061Z] ----------------------------------------------------------------------
+[debug] [2025-01-07T16:36:50.064Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\91725\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-01-07T16:36:50.065Z] CLI Version:   13.29.1
+[debug] [2025-01-07T16:36:50.065Z] Platform:      win32
+[debug] [2025-01-07T16:36:50.065Z] Node Version:  v20.18.1
+[debug] [2025-01-07T16:36:50.065Z] Time:          Tue Jan 07 2025 22:06:50 GMT+0530 (India Standard Time)
+[debug] [2025-01-07T16:36:50.065Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-07T16:36:50.147Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-07T16:36:50.148Z] > authorizing via signed-in user (shaikrohinbi258@gmail.com)
+[debug] [2025-01-07T16:36:50.148Z] [iam] checking project task-management-dashboar-8ee9c for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-07T16:36:50.150Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:50.150Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:50.151Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-management-dashboar-8ee9c:testIamPermissions [none]
+[debug] [2025-01-07T16:36:50.151Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-management-dashboar-8ee9c:testIamPermissions x-goog-quota-user=projects/task-management-dashboar-8ee9c
+[debug] [2025-01-07T16:36:50.152Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-management-dashboar-8ee9c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-07T16:36:51.916Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-management-dashboar-8ee9c:testIamPermissions 200
+[debug] [2025-01-07T16:36:51.917Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-management-dashboar-8ee9c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-07T16:36:51.918Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:51.919Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:51.920Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/task-management-dashboar-8ee9c [none]
+[debug] [2025-01-07T16:36:53.207Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/task-management-dashboar-8ee9c 200
+[debug] [2025-01-07T16:36:53.207Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/task-management-dashboar-8ee9c {"projectId":"task-management-dashboar-8ee9c","projectNumber":"682071391416","displayName":"task-management-dashboard","name":"projects/task-management-dashboar-8ee9c","resources":{"hostingSite":"task-management-dashboar-8ee9c"},"state":"ACTIVE","etag":"1_77a745c7-2341-4b89-8e5f-25114d080c9d"}
+[info] 
+[info] === Deploying to 'task-management-dashboar-8ee9c'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-01-07T16:36:53.225Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:53.225Z] Checked if tokens are valid: true, expires at: 1736271342300
+[debug] [2025-01-07T16:36:53.226Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-management-dashboar-8ee9c/versions [none]
+[debug] [2025-01-07T16:36:53.226Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-management-dashboar-8ee9c/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
